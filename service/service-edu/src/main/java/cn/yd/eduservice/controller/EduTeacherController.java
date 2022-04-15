@@ -6,6 +6,7 @@ import cn.yd.eduservice.entity.vo.TeacherQueryVo;
 import cn.yd.eduservice.service.EduTeacherService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -17,7 +18,8 @@ import org.springframework.web.bind.annotation.*;
  * @since 2022-04-12
  */
 @RestController
-@RequestMapping("/eduservice/teacher")
+@RequestMapping("/teacher")
+@CrossOrigin
 public class EduTeacherController {
     @Autowired
     private EduTeacherService eduTeacherService;
@@ -40,7 +42,7 @@ public class EduTeacherController {
     @GetMapping("/pageList")
     public Result<?> teacherPageList(@RequestParam(value = "pageNum", required = true) Integer pageNum,
                                      @RequestParam(value = "pageSize", required = true) Integer pageSize,
-                                     TeacherQueryVo teacherQueryVo) {
+                                     @RequestBody TeacherQueryVo teacherQueryVo) {
         Page<EduTeacher> page = new Page<>(pageNum, pageSize);
         return Result.OK(eduTeacherService.conditionPage(teacherQueryVo, page));
     }
@@ -63,7 +65,7 @@ public class EduTeacherController {
      * @return
      */
     @PostMapping("saveTeacher")
-    public Result<?> saveTeacher(EduTeacher teacher){
+    public Result<?> saveTeacher(@RequestBody EduTeacher teacher){
         eduTeacherService.save(teacher);
         return Result.OK("添加成功");
     }
@@ -74,7 +76,7 @@ public class EduTeacherController {
      * @return
      */
     @PutMapping("editTeacher")
-    private Result<?> editTeacher(EduTeacher eduTeacher){
+    private Result<?> editTeacher(@RequestBody EduTeacher eduTeacher){
         return eduTeacherService.updateTeacher(eduTeacher);
     }
 }
