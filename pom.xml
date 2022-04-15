@@ -11,6 +11,7 @@
         <module>common</module>
         <module>common/service-base</module>
         <module>common/common-utils</module>
+        <module>service/service-oss</module>
     </modules>
     <name>guli-parent</name>
     <description>guli-parent</description>

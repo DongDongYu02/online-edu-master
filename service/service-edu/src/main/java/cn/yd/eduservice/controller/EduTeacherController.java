@@ -78,6 +78,7 @@ public class EduTeacherController {
     public Result<?> saveTeacher(@RequestBody EduTeacher teacher){
         eduTeacherService.save(teacher);
         return Result.OK("添加成功");
+
     }
 
     /**
