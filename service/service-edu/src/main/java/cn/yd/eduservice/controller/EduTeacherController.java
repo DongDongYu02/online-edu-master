@@ -39,7 +39,7 @@ public class EduTeacherController {
      *
      * @return
      */
-    @GetMapping("/pageList")
+    @PostMapping("/pageList")
     public Result<?> teacherPageList(@RequestParam(value = "pageNum", required = true) Integer pageNum,
                                      @RequestParam(value = "pageSize", required = true) Integer pageSize,
                                      @RequestBody TeacherQueryVo teacherQueryVo) {
@@ -47,6 +47,16 @@ public class EduTeacherController {
         return Result.OK(eduTeacherService.conditionPage(teacherQueryVo, page));
     }
 
+    /**
+     * 获取讲师信息
+     * @param id 讲师id
+     * @return
+     */
+    @GetMapping("{id}")
+    public Result<?> getTeacher(@PathVariable String id){
+        EduTeacher teacher = eduTeacherService.getById(id);
+        return Result.OK(teacher);
+    }
     /**
      * 删除讲师
      *

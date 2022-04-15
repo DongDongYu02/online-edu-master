@@ -42,7 +42,7 @@ public class Result<T> implements Serializable {
 	 * 返回数据对象 data
 	 */
 	@ApiModelProperty(value = "返回数据对象")
-	private T result;
+	private T data;
 
 	/**
 	 * 时间戳
@@ -92,7 +92,7 @@ public class Result<T> implements Serializable {
 		Result<Object> r = new Result<Object>();
 		r.setSuccess(true);
 		r.setCode(ResultCode.OK);
-		r.setResult(data);
+		r.setData(data);
 		return r;
 	}
 
@@ -109,7 +109,7 @@ public class Result<T> implements Serializable {
 		r.setCode(ResultCode.OK);
 		r.setMessage(msg);
 		//Result OK(String msg)方法会造成兼容性问题 issues/I4IP3D
-		r.setResult((T) msg);
+		r.setData((T) msg);
 		return r;
 	}
 
@@ -117,7 +117,7 @@ public class Result<T> implements Serializable {
 		Result<T> r = new Result<T>();
 		r.setSuccess(true);
 		r.setCode(ResultCode.OK);
-		r.setResult(data);
+		r.setData(data);
 		return r;
 	}
 
@@ -126,7 +126,7 @@ public class Result<T> implements Serializable {
 		r.setSuccess(true);
 		r.setCode(ResultCode.OK);
 		r.setMessage(msg);
-		r.setResult(data);
+		r.setData(data);
 		return r;
 	}
 
@@ -135,7 +135,7 @@ public class Result<T> implements Serializable {
 		r.setSuccess(false);
 		r.setCode(ResultCode.ERROR);
 		r.setMessage(msg);
-		r.setResult(data);
+		r.setData(data);
 		return r;
 	}
 
